@@ -7,8 +7,10 @@ exe = EXE( pyz,
           a.binaries,
           a.zipfiles,
           a.datas,
-          name=os.path.join('dist', 'BaiduRank.exe'),
+          name=os.path.join('dist', 'BaiduRank_v1.1.exe'),
           debug=False,
           strip=False,
           upx=True,
-          console=True )
+          console=False )
+app = BUNDLE(exe,
+             name=os.path.join('dist', 'BaiduRank_v1.1.exe.app'))

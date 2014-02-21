@@ -81,7 +81,7 @@ def get_rank(keyword, website):
 
 if __name__ == "__main__":
     
-    keyword = "°¡"
+    keyword = "å•Š"
     website = "http://www.abc.com.cn"
     print get_rank(keyword, "http://baike.baidu.com/link?url=")
 

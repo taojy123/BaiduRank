@@ -62,7 +62,7 @@ class Frame1(wx.Frame):
               s = "%s,%s,%s\n"%(keyword, website, rank)
               open("data.csv", "a").write(s)
             except:
-                wx.MessageBox(line + "  ´ËĞĞÊı¾İÓĞÎó£¡")
+                wx.MessageBox(line + "  æ­¤è¡Œæ•°æ®æœ‰è¯¯ï¼")
             
-        wx.MessageBox("Íê³É! Çë²é¿´Êä³öÎÄ¼ş data.csv")
+        wx.MessageBox("å®Œæˆ! è¯·æŸ¥çœ‹è¾“å‡ºæ–‡ä»¶ data.csv")
         event.Skip()
