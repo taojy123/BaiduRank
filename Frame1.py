@@ -2,7 +2,36 @@
 #Boa:Frame:Frame1
 
 import wx
+import threading
 from baidu import get_rank
+
+class MyThread(threading.Thread):
+    def __init__(self, s):
+        threading.Thread.__init__(self)
+        self.s = s
+
+    def run(self):
+        data = self.s.textCtrl1.GetValue().encode("gbk")
+        lines = data.split("\n")
+        self.s.gauge1.SetRange(len(lines))
+        self.s.gauge1.SetValue(0)
+        for line in lines:
+            try:
+                self.s.gauge1.SetValue(self.s.gauge1.GetValue() + 1)
+                line = line.strip()
+                if not line:
+                    continue
+                keyword, website = line.split()
+                rank = get_rank(keyword, website)
+                s = "%s,%s,%s\n"%(keyword, website, rank)
+                open("data.csv", "a").write(s)
+            except:
+                wx.MessageBox(line + "  此行数据有误！")
+            
+        self.s.isrun = False
+        wx.MessageBox("完成! 请查看输出文件 data.csv")
+
+
 
 def create(parent):
     return Frame1(parent)
@@ -45,24 +74,13 @@ class Frame1(wx.Frame):
 
     def __init__(self, parent):
         self._init_ctrls(parent)
+        self.isrun = False
 
-    def OnButton1Button(self, event):
-        data = self.textCtrl1.GetValue().encode("gbk")
-        lines = data.split("\n")
-        self.gauge1.SetRange(len(lines))
-        self.gauge1.SetValue(0)
-        for line in lines:
-            try:
-              self.gauge1.SetValue(self.gauge1.GetValue() + 1)
-              line = line.strip()
-              if not line:
-                continue
-              keyword, website = line.split()
-              rank = get_rank(keyword, website)
-              s = "%s,%s,%s\n"%(keyword, website, rank)
-              open("data.csv", "a").write(s)
-            except:
-                wx.MessageBox(line + "  此行数据有误！")
-            
-        wx.MessageBox("完成! 请查看输出文件 data.csv")
+    def OnButton1Button(self, event): 
+        if not self.isrun:
+            self.isrun = True
+            t = MyThread(self)
+            t.start()
+        else:
+            wx.MessageBox("正在进行采集 请稍候..")
         event.Skip()

@@ -77,7 +77,7 @@ def get_rank(keyword, website):
         except:
             pass
                 
-    return "-"
+    return "0"
 
 if __name__ == "__main__":
     
