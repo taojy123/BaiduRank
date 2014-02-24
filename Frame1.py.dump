@@ -26,10 +26,10 @@ class MyThread(threading.Thread):
                 s = "%s,%s,%s\n"%(keyword, website, rank)
                 open("data.csv", "a").write(s)
             except:
-                wx.MessageBox(line + "  ´ËĞĞÊı¾İÓĞÎó£¡")
+                wx.MessageBox(line + "  æ­¤è¡Œæ•°æ®æœ‰è¯¯ï¼")
             
         self.s.isrun = False
-        wx.MessageBox("Íê³É! Çë²é¿´Êä³öÎÄ¼ş data.csv")
+        wx.MessageBox("å®Œæˆ! è¯·æŸ¥çœ‹è¾“å‡ºæ–‡ä»¶ data.csv")
 
 
 
@@ -46,7 +46,7 @@ class Frame1(wx.Frame):
         wx.Frame.__init__(self, id=wxID_FRAME1, name='', parent=prnt,
               pos=wx.Point(637, 354), size=wx.Size(874, 540),
               style=wx.DEFAULT_FRAME_STYLE,
-              title='¹óÈÊÒ½ÁÆÍøÂç·şÎñÓĞÏŞ¹«Ë¾£¨°Ù¶È/360¿ìËÙÅÅÃû,¼ûĞ§ºó¸¶·Ñ¡£ÁªÏµQQ£º10855513£©')
+              title='è´µä»åŒ»ç–—ç½‘ç»œæœåŠ¡æœ‰é™å…¬å¸ï¼ˆç™¾åº¦/360å¿«é€Ÿæ’å,è§æ•ˆåä»˜è´¹ã€‚è”ç³»QQï¼š10855513ï¼‰')
         self.SetClientSize(wx.Size(858, 502))
         self.SetBackgroundColour(wx.Colour(253, 234, 213))
         self.SetToolTipString('')
@@ -82,5 +82,5 @@ class Frame1(wx.Frame):
             t = MyThread(self)
             t.start()
         else:
-            wx.MessageBox("ÕıÔÚ½øĞĞ²É¼¯ ÇëÉÔºò..")
+            wx.MessageBox("æ­£åœ¨è¿›è¡Œé‡‡é›† è¯·ç¨å€™..")
         event.Skip()
